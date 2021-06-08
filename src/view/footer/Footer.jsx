@@ -1,11 +1,13 @@
 import React from 'react';
-
+import './Footer.css'
 const Footer = (props) => {
 
     return(
-        <>
-            <h6>This is the footer</h6>
-        </>
+
+        <div className={"footer-div"}>
+            <p>All Right Reserved @TAXIBOOKING 2020</p>
+            <small className="bottom_link">www.taxibookingapp.com</small>
+        </div>
     );
 }
 

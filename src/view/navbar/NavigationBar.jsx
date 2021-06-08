@@ -1,13 +1,15 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
+import './NavigationBar.css'
+
 
 const NavigationBar = (props) => {
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <Link className="navbar-brand" to={"/"}>Navbar</Link>
+                <Link className="navbar-brand" to={"/"}>TaxiBooking</Link>
 
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
@@ -21,7 +23,10 @@ const NavigationBar = (props) => {
                             <Link className="nav-link" to={"/all-taxi-available"}>Taxi</Link>
                         </li>
                     </ul>
+
                 </div>
+
+                    <Link to={"/login"} ><button className={"btn-primary login-button navbar-brand"}>Login</button></Link>
             </div>
         </nav>
     )

@@ -1,0 +1,17 @@
+.form-main {
+    margin-left: 40%;
+}
+
+.login-btn {
+    margin-top: 2vh;
+    margin-bottom: 10vh;
+}
+
+.form-input {
+    border-radius: 3px;
+    margin-top: 1.5vh;
+    height: 6vh;
+    /*size: 35vm ;*/
+    width: 40%;
+    initial-letter: normal;
+}

@@ -7,18 +7,18 @@ const Register = () => {
     return(
         <>
             <form className={"text-center m-2"}>
-                <input type="text"  placeholder={"First Name"}/>
+                <input type="text"  placeholder={"First Name"} className={"m-1"}/>
                 <br />
-                <input type={"text"} placeholder={"Last Name"}/>
+                <input type={"text"} placeholder={"Last Name"} className={"m-1"}/>
                 <br />
-                <input type={"email"} placeholder={"email address"}/>
+                <input type={"email"} placeholder={"email address"} className={"m-1"}/>
                 <br />
-                <input  type={"password"} placeholder={"password"}/>
+                <input  type={"password"} placeholder={"password"} className={"m-1"}/>
 
                 <br />
-                <input  type={"password"} placeholder={"re-enter password"}/>
+                <input  type={"password"} placeholder={"re-enter password"} className={"m-1"}/>
                 <br />
-                <input  type={"password"} placeholder={"re-enter password"}/>
+                <input  type={"password"} placeholder={"re-enter password"} className={"m-1"}/>
 
                 <br />
 

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 
 import './NavigationBar.css'
+import StateContext from "../../context/StateContext";
 
 
 const NavigationBar = (props) => {
+
+    const userDetails = useContext(StateContext);
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,6 +24,10 @@ const NavigationBar = (props) => {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to={"/all-taxi-available"}>Taxi</Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/all-taxi-available"}>{userDetails.user.userName}</Link>
                         </li>
                     </ul>
 

@@ -1,17 +1,28 @@
 .form-main {
+    margin-top: 20vh;
+    margin-bottom: 13vh;
     margin-left: 40%;
+    text-decoration: none;
+
 }
 
 .login-btn {
+    height: 6vh;
     margin-top: 2vh;
-    margin-bottom: 10vh;
+    margin-bottom: 2vh;
+    margin-left: 50px;
 }
 
 .form-input {
     border-radius: 3px;
     margin-top: 1.5vh;
-    height: 6vh;
+    height: 7vh;
     /*size: 35vm ;*/
     width: 40%;
     initial-letter: normal;
+    text-indent: 1.5vh;
+}
+.cancel-btn {
+    height: 6vh;
+    margin-left: 20px;
 }

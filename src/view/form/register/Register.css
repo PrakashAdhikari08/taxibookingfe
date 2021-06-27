@@ -1,6 +1,9 @@
-input {
+input, select {
     border-radius: 5px;
     text-indent: 3px;
     height: 6vh;
     margin-top: 1vh;
+}
+.input-long, select {
+    width: 98%;
 }

@@ -4,68 +4,72 @@ import './Register.css'
 import {Link} from "react-router-dom";
 
 import * as Yup from "yup";
-import { useFormik } from "formik";
+import {useFormik} from "formik";
+import {saveCustomer, saveDriver} from "../../../api/API";
 
 const Register = (props) => {
 
     const initialValues = {
-        firstName : "",
-        lastName : "",
+        firstName: "",
+        lastName: "",
         emailAddress: "",
-        password: ""
+        password: "",
+        userType: ""
     }
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
         const data = {
             firstName: values.firstName,
             lastName: values.lastName,
-            emailAddress: values.emailAddress,
-            password: values.password,
+            email: values.emailAddress,
+            password: values.password
         };
 
-        console.log(data.firstName, data.lastName);
+        const userType = values.userType;
+        if (userType === "CUSTOMER") {
+            try {
+                const response = await saveCustomer(data);
+                console.log(response);
+                props.history.push("/login");
+            } catch (error) {
+
+            }
+        } else {
+            try {
+                const response = await saveDriver(data);
+                console.log(response);
+                props.history.push("/login");
+            } catch (error) {
+
+            }
+        }
     }
 
-        const validationSchema = Yup.object({
-            name: Yup.string().required("Please Enter your full Name"),
-            username: Yup.string()
-                .email("Invalid Email Address")
-                .required("Username is requied"),
-            password: Yup.string()
-                .required("Password Required")
-                .min(6, "Password is too short"),
-            password1: Yup.string()
-                .required("Re-enter Password")
-                .test("Password Matched", "Passwords must match", function (value) {
-                    return this.parent.password === value;
-                }),
-        });
+    const validationSchema = Yup.object({
+        firstName: Yup.string().required("Please Enter your First Name"),
+        lastName: Yup.string().required("Please Enter your Last Name"),
 
-        const formik = useFormik({
-            initialValues,
-            onSubmit,
-            // validationSchema,
-        });
+        emailAddress: Yup.string()
+            .email("Invalid Email Address")
+            .required("Username is required"),
+        password: Yup.string()
+            .required("Password Required")
+            .min(6, "Password is too short"),
+        password1: Yup.string()
+            .required("Re-enter Password")
+            .test("Password Matched", "Passwords must match", function (value) {
+                return this.parent.password === value;
+            }),
+        userType: Yup.string()
+            .required("Please select a user type")
+            .min(6, "Select a Type")
+    });
 
-
-    //     const [userType, setUserType] = useState(0);
-    //
-    // const handleSubmit =(e) => {
-    //     e.preventDefault();
-    //     console.log("Hello World");
-    //     console.log(userType);
-    //     if(userType === 1){
-    //         console.log("call driver api");
-    //     }
-    //     else if( userType === 2){
-    //         console.log("call customer api");
-    //     }
-    //     else
-    //         alert("Please select a user type");
-    //
-    //
-    // }
-
+    const formik = useFormik({
+        initialValues,
+        onSubmit,
+        validationSchema,
+    });
 
     return (
         <div className={"text-center"}>
@@ -78,30 +82,56 @@ const Register = (props) => {
                     id="firstName"
                     {...formik.getFieldProps('firstName')}
                 />
-                <input type={"text"} placeholder={"Last Name"} className={"m-1"} id={"lastName"} {...formik.getFieldProps('lastName')}/>
-                <br/>
-                <input type={"email"} placeholder={"email address"} className={"m-1 input-long"} id={"emailAddress"} {...formik.getFieldProps("emailAddress")}/>
-                <br/>
-                <input type={"password"} placeholder={"password"} className={"m-1 input-long"}/>
+                {formik.touched.firstName && formik.errors.firstName ? (
+                    <p className={"text-danger text-sm-center"}>{formik.errors.firstName}</p>
+                ) : null}
+                <input type={"text"} placeholder={"Last Name"} className={"m-1"}
+                       id={"lastName"} {...formik.getFieldProps('lastName')}/>
+                {formik.touched.lastName && formik.errors.lastName ? (
+                    <p className={"text-danger text-sm-center"}>{formik.errors.lastName}</p>
+                ) : null}
 
                 <br/>
-                <input type={"password"} placeholder={"re-enter password"} className={"m-1 input-long"}/>
+                <input type={"email"} placeholder={"email address"} className={"m-1 input-long"}
+                       id={"emailAddress"} {...formik.getFieldProps("emailAddress")}/>
+
+                {formik.touched.emailAddress && formik.errors.emailAddress ? (
+                    <p className={"text-danger text-sm-center"}>{formik.errors.emailAddress}</p>
+                ) : null}
+                <br/>
+                <input type={"password"} placeholder={"password"} id={"password"} className={"m-1 input-long"}
+                       autoComplete="off" {...formik.getFieldProps("password")} />
+                {formik.touched.password && formik.errors.password ? (
+                    <p className={"text-danger text-sm-center"}>{formik.errors.password}</p>) : null}
+                <br/>
+                <input type={"password"} placeholder={"re-enter password"} id={"password1"} className={"m-1 input-long"}
+                       autoComplete="off" {...formik.getFieldProps("password1")}/>
+
+                {(formik.touched.password1 && formik.errors.password1) ||
+                formik.password !== formik.password1 ? (
+                    <p className={"text-danger text-sm-center"}>
+                        {formik.errors.password1}
+                    </p>
+                ) : null}
 
                 <br/>
                 <select placeholder={"Chose the User type"} className={"m-1 border-2"}
-                        // onChange={event => setUserType(event.target.value)}
+                        id={"userType"} {...formik.getFieldProps("userType")}
+                    // onChange={event => setUserType(event.target.value)}
                 >
-                    <option value={0} >SELECT USER TYPE</option>
-                    <option value={1} >DRIVER</option>
-                    <option value={2} >CUSTOMER</option>
+                    <option value={""}>SELECT USER TYPE</option>
+                    <option value={"DRIVER"}>DRIVER</option>
+                    <option value={"CUSTOMER"}>CUSTOMER</option>
                 </select>
+                {formik.touched.userType && formik.errors.userType ? (
+                    <p className={"text-danger text-sm-center"}>{formik.errors.userType}</p>) : null}
                 <br/>
 
                 <button className={"btn-sm btn-primary m-1"} type={"submit"}>Sign Up</button>
 
-               <Link to={"/"}>
-                <button className={"btn-sm btn-danger m-1"}>Cancel</button>
-               </Link>
+                <Link to={"/"}>
+                    <button className={"btn-sm btn-danger m-1"}>Cancel</button>
+                </Link>
 
             </form>
         </div>

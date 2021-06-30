@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Taxi.css'
+import BookingConfirmationModal from "./BookingConfirmationModal";
 
 const Taxi = (props) => {
 
@@ -24,18 +25,20 @@ const Taxi = (props) => {
         }
     ]
 
-    const [selectedBooking, setSelectedBooking] = useState("");
+    const [selectedBooking, setSelectedBooking] = useState({taxiNumber :"", type:""});
+    const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
-    const bookTaxi = (taxiNumber) => {
-        setSelectedBooking(taxiNumber);
-        console.log("the selected booking is ", taxiNumber);
-        alert("Are you sure you want to book " + taxiNumber);
-        //Make the rest call here
-        console.log("Booking Made")
+    const bookTaxi = (taxiNumber, type) => {
+        const selectedTaxi = {
+            taxiNumber : taxiNumber,
+            type : type
+        }
+        setSelectedBooking(selectedTaxi);
+        setOpenConfirmModal(true);
     }
 
     return (
-        <div className={"taxi-main-div text-center "}>
+        <div className={"taxi-main-div text-center"}>
             <h2><em>All Available Taxis </em></h2>
             <table className={"table table-striped m-2"}>
                 <thead>
@@ -51,17 +54,18 @@ const Taxi = (props) => {
                             <td>{taxi.taxiNumber}</td>
                             <td>{taxi.type}</td>
                             <td>{taxi.status}</td>
-                            <td><button className={"btn btn-sm btn-warning m-1"} onClick={() => bookTaxi(taxi.taxiNumber)}>Book</button></td>
+                            <td><button className={"btn btn-sm btn-warning m-1"} onClick={() => bookTaxi(taxi.taxiNumber, taxi.type)}>Book</button></td>
                             <br/>
                         </tr>
                     ))
+
 
                 }
 
 
                 </tbody>
             </table>
-
+            {openConfirmModal ? <BookingConfirmationModal isOpen={openConfirmModal} method={setOpenConfirmModal} selected={selectedBooking}/> : "" }
         </div>
 
 

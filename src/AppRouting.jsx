@@ -8,7 +8,7 @@ import Taxi from "./view/taxi/Taxi";
 import Register from "./view/form/register/Register";
 
 
-const Routing = () => {
+const Routing = (props) => {
 
     return(
         <>

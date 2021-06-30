@@ -1,3 +1,19 @@
 .tr-margin{
     padding-top: 0vh;
 }
+
+.modal_layout{
+    left: 30%;
+    right: 30%;
+    background-color: #eeeeee;
+    width: 40%;
+    border-radius: 7px;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

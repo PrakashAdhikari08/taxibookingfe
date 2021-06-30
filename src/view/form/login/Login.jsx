@@ -25,7 +25,7 @@ const Login = (props) => {
                     <small onClick={() => setShow(!show)}>show password</small>
                 </Link>
                 <br/>
-                <button className={"login-btn"}  onClick={loginClicked()}>login</button>
+                <button className={"login-btn"} >login</button>
                 <Link to={"/"} ><button className={"cancel-btn btn-danger"}>Cancel</button> </Link>
                 <br />
                 <small><Link to={"/register"}>Click here</Link> to create new account</small>

@@ -7,7 +7,7 @@ import StateContext from "../../context/StateContext";
 
 const NavigationBar = (props) => {
 
-    const userDetails = useContext(StateContext);
+    const {loggedInUser, setRegisterModal} = useContext(StateContext);
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,13 +27,15 @@ const NavigationBar = (props) => {
                         </li>
 
                         <li className="nav-item">
-                            <Link className="nav-link" to={"/all-taxi-available"}>{userDetails.user.userName}</Link>
+                            <button className="nav-link" onClick={() => setRegisterModal(true)}>Register Taxi {loggedInUser.user.role}</button>
                         </li>
                     </ul>
 
                 </div>
-
+                { !loggedInUser.userLoggedIn ?
                     <Link to={"/login"} ><button className={"btn-primary login-button navbar-brand"}>Login</button></Link>
+                    : <p className={"navbar-brand"}>Welcome, {loggedInUser.user.name}</p>
+                }
             </div>
         </nav>
     )

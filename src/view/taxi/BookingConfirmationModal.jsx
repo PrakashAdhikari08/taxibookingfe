@@ -34,9 +34,6 @@ return(
                 </div>
 
             </Modal>
-        // </div>
-
-
     )
 }
 export default BookingConfirmationModal;

@@ -1,26 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import Routing from "./AppRouting";
 import StateContext from "./context/StateContext";
+import RegisterTaxi from "./view/taxi/register/RegisterTaxi";
 
 function App(props) {
 
     const userState = {
         user : {
-            userID : "Prakash",
-            userName : "Prakash Adhikari",
-            role : "ADMIN",
+            userID : "",
+            userName : "ABC",
+            role : "NONE",
             name : "",
             jwt : ""
         },
         userLoggedIn: false
     };
 
+    const [loggedInUser, setLoggedInUser] = useState(userState);
 
+    const [registerTaxiModalOpen, setRegisterTaxiModalOpen] = useState(false);
+
+    const setRegisterModal =(value) =>{
+        setRegisterTaxiModalOpen(value);
+    }
 
     return (
         <div className="App">
-            <StateContext.Provider value={userState}>
+            <StateContext.Provider value={{loggedInUser, setRegisterModal, registerTaxiModalOpen, setLoggedInUser}}>
                 <Routing/>
+                <RegisterTaxi />
             </StateContext.Provider>
         </div>
     );

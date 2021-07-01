@@ -1,7 +1,4 @@
-.form-main {
-    margin-top: 20vh;
-    margin-bottom: 13vh;
-    margin-left: 40%;
+.form-main-login {
     text-decoration: none;
 
 }
@@ -16,13 +13,10 @@
 .form-input {
     border-radius: 3px;
     margin-top: 1.5vh;
-    height: 7vh;
+    height: 6vh;
     /*size: 35vm ;*/
-    width: 40%;
+    width: 30%;
     initial-letter: normal;
     text-indent: 1.5vh;
 }
-.cancel-btn {
-    height: 6vh;
-    margin-left: 20px;
-}
+

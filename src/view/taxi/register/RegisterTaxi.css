@@ -1,0 +1,13 @@
+.taxi_register_modal_layout{
+    left: 40%;
+    right: 40%;
+    background-color: #eeeeee;
+    width: 20%;
+    border-radius: 7px;
+}
+input{
+    width: 100%;
+}
+select{
+    width: 100%;
+}

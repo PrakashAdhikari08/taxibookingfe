@@ -21,7 +21,6 @@ const Taxi = (props) => {
             taxiNumber: "NT 111",
             type: "TRUCK",
             status: "AVAILABLE"
-
         }
     ]
 

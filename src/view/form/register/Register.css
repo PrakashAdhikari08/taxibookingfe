@@ -5,5 +5,5 @@ input, select {
     margin-top: 1vh;
 }
 .input-long, select {
-    width: 98%;
+    width: 100%;
 }

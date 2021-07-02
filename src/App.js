@@ -18,6 +18,8 @@ function App(props) {
 
     const [loggedInUser, setLoggedInUser] = useState(userState);
 
+    const [taxiAdded, setTaxiAdded] = useState(false);
+
     const [registerTaxiModalOpen, setRegisterTaxiModalOpen] = useState(false);
 
     const setRegisterModal =(value) =>{
@@ -26,7 +28,7 @@ function App(props) {
 
     return (
         <div className="App">
-            <StateContext.Provider value={{loggedInUser, setRegisterModal, registerTaxiModalOpen, setLoggedInUser}}>
+            <StateContext.Provider value={{loggedInUser, setRegisterModal, registerTaxiModalOpen, setLoggedInUser, taxiAdded, setTaxiAdded}}>
                 <Routing/>
                 <RegisterTaxi />
             </StateContext.Provider>

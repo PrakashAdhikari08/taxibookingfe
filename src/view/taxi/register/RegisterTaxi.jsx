@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import Modal from 'react-modal';
 import './RegisterTaxi.css'
 import StateContext from "../../../context/StateContext";
@@ -10,7 +10,7 @@ import {saveTaxiForDriver} from "../../../api/API";
 const RegisterTaxi = (props) => {
 
 
-    const {setRegisterModal, registerTaxiModalOpen, loggedInUser} = useContext(StateContext);
+    const {setRegisterModal, registerTaxiModalOpen, loggedInUser,taxiAdded, setTaxiAdded} = useContext(StateContext);
 
     const initialValues = {
         taxiNumber: "",
@@ -25,7 +25,7 @@ const RegisterTaxi = (props) => {
         }
         const userID = loggedInUser.user.userID;
 
-        registerDriver(data, userID).then(r => console.log(r));
+        registerTaxi(data, userID).then(r => console.log(r));
     }
 
     const validationSchema = Yup.object({
@@ -48,16 +48,18 @@ const RegisterTaxi = (props) => {
         setRegisterModal(false);
     }
 
-    const registerDriver = async (data, userID) => {
+    const registerTaxi = async (data, userID) => {
         //make api call
         console.log(data, userID);
 
         try{
             const response = await saveTaxiForDriver(data, userID);
             console.log(response);
-            // props.history.push("/login")
             closeModal();
+            setTaxiAdded(!taxiAdded);
+            formik.resetForm();
             alert("Taxi Saved \n"+ data.taxiNumber + "\n" + data.type);
+
         }
         catch (error){
 

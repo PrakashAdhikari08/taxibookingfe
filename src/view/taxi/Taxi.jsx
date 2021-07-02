@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './Taxi.css'
 import BookingConfirmationModal from "./BookingConfirmationModal";
 import {getAllAvailableTaxi} from "../../api/API";
+import StateContext from "../../context/StateContext";
 
 const Taxi = (props) => {
 
 
     const [listOfTaxi, SetListOfTaxi] = useState([]);
+
+    const {taxiAdded} = useContext(StateContext);
 
     useEffect(  ()=>{
          async function fetchAllTaxi(){
@@ -19,7 +22,7 @@ const Taxi = (props) => {
               }
         }
        fetchAllTaxi().then(r => null);
-    },[]);
+    },[taxiAdded]);
 
     const [selectedBooking, setSelectedBooking] = useState({taxiNumber :"", type:""});
     const [openConfirmModal, setOpenConfirmModal] = useState(false);

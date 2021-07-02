@@ -7,7 +7,7 @@ function App(props) {
 
     const userState = {
         user : {
-            userID : "",
+            userID : "1",
             userName : "ABC",
             role : "NONE",
             name : "",

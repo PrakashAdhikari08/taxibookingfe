@@ -7,3 +7,7 @@ input, select {
 .input-long, select {
     width: 100%;
 }
+
+.text-input-to-uppercase{
+    text-transform: uppercase;
+}

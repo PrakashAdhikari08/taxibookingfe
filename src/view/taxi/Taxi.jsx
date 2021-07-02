@@ -1,28 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Taxi.css'
 import BookingConfirmationModal from "./BookingConfirmationModal";
+import {getAllAvailableTaxi} from "../../api/API";
 
 const Taxi = (props) => {
 
 
-    const listOfTaxi = [
-        {
-            taxiNumber: "VIC 123",
-            type: "MINI",
-            status: "AVAILABLE"
-        },
-        {
-            taxiNumber: "VIC 111",
-            type: "VAN",
-            status: "AVAILABLE"
+    const [listOfTaxi, SetListOfTaxi] = useState([]);
 
-        },
-        {
-            taxiNumber: "NT 111",
-            type: "TRUCK",
-            status: "AVAILABLE"
+    useEffect( async ()=>{
+        function fetchAllTaxi(data){
+            SetListOfTaxi(data)
         }
-    ]
+        try{
+            const response = await getAllAvailableTaxi();
+            fetchAllTaxi(response.data)
+            console.log(response);
+        }
+        catch (error){
+            fetchAllTaxi(null)
+        }
+    },[])
 
     const [selectedBooking, setSelectedBooking] = useState({taxiNumber :"", type:""});
     const [openConfirmModal, setOpenConfirmModal] = useState(false);

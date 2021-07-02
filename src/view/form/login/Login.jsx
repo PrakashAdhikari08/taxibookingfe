@@ -74,12 +74,9 @@ const Login = (props) => {
                 {formik.touched.password && formik.errors.password ? (
                     <p className={"text-danger text-sm-center"}>{formik.errors.password}</p>) : null}
                 <br/>
-                <Link>
-                    <small onClick={() => setShow(!show)}>{!show ? "show password" : "hide password"}</small>
-                </Link>
-                <br/>
+                    <p onClick={() => setShow(!show)} className={"text-primary text-decoration-underline mt-2"} >{!show ? "show password" : "hide password"}</p>
                 <button className={"btn-sm border-1"} type={"submit"} >login</button>
-                <Link to={"/"} ><button className={"btn btn-sm btn-danger m-2 border-1"}>Cancel</button> </Link>
+                <Link to={"/"} ><button className={"btn btn-sm btn-danger border-1 m-1"}>Cancel</button> </Link>
                 <br />
                 <small><Link to={"/register"}>Click here</Link> to create new account</small>
             </form>

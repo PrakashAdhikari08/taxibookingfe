@@ -25,7 +25,7 @@ const RegisterTaxi = (props) => {
         }
         const userID = loggedInUser.user.userID;
 
-        registerDriver(data, userID);
+        registerDriver(data, userID).then(r => console.log(r));
     }
 
     const validationSchema = Yup.object({
@@ -57,7 +57,7 @@ const RegisterTaxi = (props) => {
             console.log(response);
             // props.history.push("/login")
             closeModal();
-            alert("Taxi Saved \n "+ data.taxiNumber + "\n" + data.type);
+            alert("Taxi Saved \n"+ data.taxiNumber + "\n" + data.type);
         }
         catch (error){
 

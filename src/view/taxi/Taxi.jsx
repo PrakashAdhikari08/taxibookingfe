@@ -8,19 +8,18 @@ const Taxi = (props) => {
 
     const [listOfTaxi, SetListOfTaxi] = useState([]);
 
-    useEffect( async ()=>{
-        function fetchAllTaxi(data){
-            SetListOfTaxi(data)
+    useEffect(  ()=>{
+         async function fetchAllTaxi(){
+              try{
+                  const response = await getAllAvailableTaxi();
+                  SetListOfTaxi(response.data)
+                  console.log(response);
+              }
+              catch (error){
+              }
         }
-        try{
-            const response = await getAllAvailableTaxi();
-            fetchAllTaxi(response.data)
-            console.log(response);
-        }
-        catch (error){
-            fetchAllTaxi(null)
-        }
-    },[])
+       fetchAllTaxi().then(r => null);
+    },[]);
 
     const [selectedBooking, setSelectedBooking] = useState({taxiNumber :"", type:""});
     const [openConfirmModal, setOpenConfirmModal] = useState(false);

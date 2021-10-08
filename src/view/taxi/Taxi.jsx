@@ -17,6 +17,8 @@ const Taxi = (props) => {
                   const response = await getAllAvailableTaxi();
                   SetListOfTaxi(response.data)
                   console.log(response);
+                  console.log(response.data)
+                  console.log("hello")
               }
               catch (error){
               }
@@ -39,32 +41,32 @@ const Taxi = (props) => {
     return (
         <div className={"taxi-main-div text-center"}>
             <h2><em>All Available Taxis </em></h2>
-            <table className={"table table-striped m-2"}>
-                <thead>
-                <th>Taxi Number</th>
-                <th>Type</th>
-                <th>Status</th>
-                </thead>
+            {/*<table className={"table table-striped m-2"}>*/}
+            {/*    <thead>*/}
+            {/*    <th>Taxi Number</th>*/}
+            {/*    <th>Type</th>*/}
+            {/*    <th>Status</th>*/}
+            {/*    </thead>*/}
 
-                <tbody>
-                {
-                    listOfTaxi.map(taxi => (
-                        <tr key={taxi.taxiNumber} className={"tr-margin"}>
-                            <td>{taxi.taxiNumber}</td>
-                            <td>{taxi.type}</td>
-                            <td>{taxi.status}</td>
-                            <td><button className={"btn btn-sm btn-warning m-1"} onClick={() => bookTaxi(taxi.taxiNumber, taxi.type)}>Book</button></td>
-                            <br/>
-                        </tr>
-                    ))
-
-
-                }
+            {/*    <tbody>*/}
+            {/*    {*/}
+            {/*        listOfTaxi.map(taxi => (*/}
+            {/*            <tr key={taxi.taxiNumber} className={"tr-margin"}>*/}
+            {/*                <td>{taxi.taxiNumber}</td>*/}
+            {/*                <td>{taxi.type}</td>*/}
+            {/*                <td>{taxi.status}</td>*/}
+            {/*                <td><button className={"btn btn-sm btn-warning m-1"} onClick={() => bookTaxi(taxi.taxiNumber, taxi.type)}>Book</button></td>*/}
+            {/*                <br/>*/}
+            {/*            </tr>*/}
+            {/*        ))*/}
 
 
-                </tbody>
-            </table>
-            {openConfirmModal ? <BookingConfirmationModal isOpen={openConfirmModal} method={setOpenConfirmModal} selected={selectedBooking}/> : "" }
+                {/*}*/}
+
+
+                {/*</tbody>*/}
+            {/*</table>*/}
+            {/* {openConfirmModal ? <BookingConfirmationModal isOpen={openConfirmModal} method={setOpenConfirmModal} selected={selectedBooking}/> : "" }*/}
         </div>
 
 

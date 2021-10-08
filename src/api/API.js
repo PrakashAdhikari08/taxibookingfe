@@ -1,5 +1,7 @@
 import Axios from 'axios';
-Axios.defaults.baseURL = "http://localhost:8081/";
+// Axios.defaults.baseURL = "http://localhost:8000";
+
+Axios.defaults.baseURL = "https://truckee-dev.com";
 
 //save a customer user
 export const saveCustomer = (data) => {
@@ -17,6 +19,34 @@ export const saveTaxiForDriver = (data, userID) => {
 }
 
 //get All available taxi
+
+const data = {'grant_type' : 'client_credentials'};
+const params = new URLSearchParams();
+let config = {
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Headers' : "Authorization"
+    },
+    auth : {
+        username : "Truckee-Service",
+        password : "Truckee-Service"
+    }
+}
+params.append('grant_type', 'client_credentials');
 export const getAllAvailableTaxi = () => {
-    return Axios.get("taxi/v1/all/available");
+    console.log("hello")
+    return Axios.request(
+        {
+            url: "/oauth/token",
+            method: "post",
+            baseURL: Axios.defaults.baseURL,
+            auth: {
+                username: "Truckee-Service", // This is the client_id
+                password: "Truckee-Service" // This is the client_secret
+            },
+           params
+        }
+
+    );
 }
